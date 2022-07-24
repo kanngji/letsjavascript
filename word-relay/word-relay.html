@@ -19,6 +19,7 @@
       let word; //제시어
       let newWord; //새로 입력한 단어
       const $word = document.querySelector("#word");
+      const $order = document.querySelector("#order");
 
       const onClickButton = () => {
         if (!word) {
@@ -30,6 +31,36 @@
           $input.value = "";
         } else {
           //비어 있지 않다.
+          //올바른거
+          if (wrd[word.length - 1] === newWord[0]) {
+            word = newWord;
+            $word.textContent = word;
+            $input.value = "";
+            const order = Number($order.textContent);
+
+            //현재 순서
+            if (order + 1 > number) {
+              $order.textContent = 1;
+            } else {
+              $order.textContent = order + 1;
+            }
+          } else {
+            //비어 있지 않다.
+            if (word[word.length - 1] === newWord[0]) {
+              word = newWord;
+              $word.textContent = word;
+              $input.value = "";
+              const order = Number($order.textContent);
+              if (order + 1 > number) {
+                $order.textContent = 1;
+              } else {
+                $order.textContent = order + 1;
+              }
+            } else {
+              //올바르지 않은거
+              alert("틀렸습니다.");
+            }
+          }
         }
       };
 
